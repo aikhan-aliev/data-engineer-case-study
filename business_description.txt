@@ -1,0 +1,38 @@
+About this dataset
+
+oph: operating hours of the engine [numeric]
+
+pist_m: piston material [numeric]
+
+issue_type: combustion issue type [string]
+- value 1: typical issue
+- value 2: atypical issue
+- value 3: non-related
+- value 4: non-symptomatic
+
+bmep: break mean effective pressure is the average preassure forcing the pistions inside an engine down [numeric]
+
+ng_imp: natural gas impurities measured in nmol [numeric]
+
+past_dmg: engine had past damages (1 = true; 0 = false) [bool]
+
+resting_analysis_results: resting results after operation
+- Value 0: normal
+- Value 1: abnormal
+- Value 2: critical
+
+rpm_max: maximum rotations per minute achieved
+
+full_load_issues: issues were induced due to full load operation (1 = yes; 0 = no)
+
+number_up: number of unplanned events
+
+number_tc: number of installed turbo chargers
+
+op_set_1: operational engine setting 1
+
+op_set_2: operational engine setting 2
+
+op_set_3: operational engine setting 3
+
+breakdown: 0 = less chance of breakdown 1= more chance of breakdown

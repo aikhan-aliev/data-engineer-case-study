@@ -68,3 +68,29 @@ gold_df = gold_df.select(
 
 gold_df.createOrReplaceTempView("gold_engine_data")
 display(gold_df)
+
+
+# dashboard showcasing stats about the data or it's issues
+
+
+#  average pressure and operating hours per engine issue
+# %sql
+# select 
+#   issue_type,
+#   avg(bmep) as avg_bmep,
+#   avg(oph) as avg_oph,
+#   count(*) as total_occurrences
+# from gold_engine_data
+# group by issue_type
+# order by total_occurrences desc
+
+
+# Engine Risk Correlation against Resting Results
+# %sql
+# select 
+#   resting_analysis_results_desc,
+#   high_breakdown_risk,
+#   count(*) as total_engines
+# from gold_engine_data
+# group by resting_analysis_results_desc, high_breakdown_risk
+# order by resting_analysis_results_desc, high_breakdown_risk

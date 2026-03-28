@@ -31,4 +31,4 @@ This layer is the final table for analysts:
 - Finally, I kept only the useful columns that analysts actually need for dashboards.
 
 ## Dashboards
-At the end of the script, there are two SQL queries. If you run them in Databricks, you can use the output to easily build the required charts for the extra dashboarding task.
+At the end of the script, there are two SQL queries wrapped in PySpark `spark.sql()` commands. Because they are enclosed in the `display()` function, they will automatically run alongside the rest of the Python code and output clean, formatted tables.

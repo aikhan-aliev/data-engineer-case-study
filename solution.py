@@ -3,7 +3,7 @@ from pyspark.sql.types import IntegerType, BooleanType
 
 table_name = "workspace.default.source_data"
 
-
+# Bronze Layer
 bronze_df = (
     spark.table(table_name)
     .withColumn("ingestion_timestamp", current_timestamp())
@@ -14,6 +14,7 @@ display(bronze_df)
 
 
 
+# Silver Layer
 spark.conf.set("spark.sql.ansi.enabled", "false")
 
 silver_df = spark.table("bronze_engine_data")
@@ -51,3 +52,19 @@ silver_df = silver_df.drop("op_set_2", "op_set_3")
 
 silver_df.createOrReplaceTempView("silver_engine_data")
 display(silver_df)
+
+
+
+# Gold Layer
+gold_df = spark.table("silver_engine_data")
+
+gold_df = gold_df.filter(col("oph") <= 120000)
+
+gold_df = gold_df.select(
+    "oph", "pist_m", "issue_type", "bmep", "ng_imp", 
+    "past_dmg", "resting_analysis_results_desc", "rpm_max", 
+    "full_load_issues", "number_up", "number_tc", "op_set_1", "high_breakdown_risk"
+)
+
+gold_df.createOrReplaceTempView("gold_engine_data")
+display(gold_df)
